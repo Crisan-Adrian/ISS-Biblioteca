@@ -6397,7 +6397,6 @@
 								"reference": {
 									"$ref": "AAAAAAF4YuF09MLqBqQ="
 								},
-								"aggregation": "shared",
 								"multiplicity": "0..1"
 							},
 							"end2": {
@@ -6580,7 +6579,6 @@
 								"reference": {
 									"$ref": "AAAAAAF4YvVrhdmL6S8="
 								},
-								"aggregation": "shared",
 								"multiplicity": "1"
 							},
 							"end2": {
