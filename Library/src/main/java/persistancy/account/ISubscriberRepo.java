@@ -1,4 +1,8 @@
 package persistancy.account;
 
-public interface ISubscriberRepo {
+import model.Employee;
+import model.Subscriber;
+import persistancy.IRepository;
+
+public interface ISubscriberRepo extends IRepository<Subscriber> {
 }

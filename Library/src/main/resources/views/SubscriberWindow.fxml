@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="SubscriberView">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SubscriberWindowController">
     <TableView layoutX="11.0" layoutY="47.0" prefHeight="338.0" prefWidth="578.0">
       <columns>
           <TableColumn prefWidth="75.0" text="C1"/>

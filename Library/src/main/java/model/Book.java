@@ -1,10 +1,13 @@
 package model;
 
 public class Book {
-    private int id;
+    private long id;
     private long isbn;
     private String bookName;
     private String author;
+
+    public Book() {
+    }
 
     public Book(int id, long isbn, String bookName, String author) {
         this.id = id;
@@ -13,11 +16,11 @@ public class Book {
         this.author = author;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
