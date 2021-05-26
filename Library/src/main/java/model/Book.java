@@ -9,7 +9,11 @@ public class Book {
     public Book() {
     }
 
-    public Book(int id, long isbn, String bookName, String author) {
+    public Book(long bookID) {
+        id = bookID;
+    }
+
+    public Book(long id, long isbn, String bookName, String author) {
         this.id = id;
         this.isbn = isbn;
         this.bookName = bookName;

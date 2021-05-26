@@ -5,7 +5,13 @@
 <hibernate-mapping>
     <class name="model.Lend"
            table="lends">
-        <id name="lendID" column="l_id"/>
+        <id name="lendID" column="l_id">
+            <generator class="sequence">
+                <param name="sequence">
+                    lends_l_id_seq
+                </param>
+            </generator>
+        </id>
         <property
                 name="bookID"
                 column="book"/>

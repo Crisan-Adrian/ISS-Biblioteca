@@ -1,9 +1,11 @@
 package service;
 
 import model.Book;
+import model.Lend;
 import persistancy.book.IBookRepo;
 import persistancy.lend.ILendRepo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,5 +45,20 @@ public class SubscriberService {
             }
         }
         return availableBooks;
+    }
+
+    public Lend Lend(long bookID, String subscriber) {
+        Book b = bookRepo.Find(new Book(bookID));
+
+        if(b != null) {
+            Lend l = new Lend();
+            l.setBookID(bookID);
+            l.setSubscriber(subscriber);
+            l.setEnd(LocalDate.now().plusDays(14));
+            l.setReturned(false);
+            l = lendRepo.Save(l);
+            return l;
+        }
+        return null;
     }
 }
