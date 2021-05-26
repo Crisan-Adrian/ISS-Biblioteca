@@ -102,22 +102,43 @@ public class SubscriberWindowController {
         books.setItems(bookModels);
     }
 
+    public void noBooksFound(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setContentText("Search did not get any results");
+        alert.show();
+    }
+
     public void SearchByAuthor(String author) {
         List<Book> availableBooks = service.SearchByAuthor(author);
+        if(availableBooks.isEmpty())
+        {
+            noBooksFound();
+            return;
+        }
         refreshTable(availableBooks);
     }
 
     public void SearchByName(String name) {
         List<Book> availableBooks = service.SearchByName(name);
+        if(availableBooks.isEmpty())
+        {
+            noBooksFound();
+            return;
+        }
         refreshTable(availableBooks);
     }
 
     public void SearchByISBN(long isbn) {
         List<Book> availableBooks = service.SearchByISBN(isbn);
+        if(availableBooks.isEmpty())
+        {
+            noBooksFound();
+            return;
+        }
         refreshTable(availableBooks);
     }
 
-    public void Lend(ActionEvent actionEvent) {
+    public void Lend() {
         if(bookInput.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please input a number as ID");
@@ -133,7 +154,11 @@ public class SubscriberWindowController {
                 confirmation.setContentText("Lend Successful. Lend ID: " + lend.getLendID() + " return date is: " + lend.getEnd());
                 confirmation.show();
                 Search();
+                return;
             }
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Lend Error");
+            alert.show();
 
         } catch (NumberFormatException ex) {
             Alert alert = new Alert(Alert.AlertType.WARNING);

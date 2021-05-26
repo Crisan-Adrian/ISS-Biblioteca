@@ -28,6 +28,7 @@ public class EmployeeService {
         subscriber.setPenalties(subscriber.getPenalties()+"\n"+penalty);
         subscriberRepo.Update(subscriber);
 
+        ReturnLend(id);
     }
 
     public LocalDate GetLend(long id) throws LibraryException {

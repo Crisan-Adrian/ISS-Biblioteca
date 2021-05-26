@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class BookDBRepo implements IBookRepo {
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     public BookDBRepo(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -119,7 +119,7 @@ public class BookDBRepo implements IBookRepo {
                 tx = session.beginTransaction();
                 List<Book> books =
                         session.createQuery("FROM Book WHERE author LIKE :author", Book.class)
-                                .setParameter("author", author).list();
+                                .setParameter("author", "%" + author + "%").list();
                 tx.commit();
                 return books;
             } catch (RuntimeException ex) {
@@ -139,7 +139,7 @@ public class BookDBRepo implements IBookRepo {
                 tx = session.beginTransaction();
                 List<Book> books =
                         session.createQuery("FROM Book WHERE bookName LIKE :name", Book.class)
-                                .setParameter("name", name).list();
+                                .setParameter("name", "%" + name + "%").list();
                 tx.commit();
                 return books;
             } catch (RuntimeException ex) {
