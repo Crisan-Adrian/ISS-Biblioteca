@@ -121,8 +121,8 @@ public class EmployeeWindowController {
             Dialog<String> penaltyDialog = new Dialog<>();
             penaltyDialog.setTitle("Select penalty");
 
-            ButtonType generateReport = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
-            penaltyDialog.getDialogPane().getButtonTypes().addAll(generateReport, ButtonType.CANCEL);
+            ButtonType ok = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+            penaltyDialog.getDialogPane().getButtonTypes().addAll(ok, ButtonType.CANCEL);
 
             GridPane grid = new GridPane();
             grid.setHgap(10);
@@ -135,7 +135,7 @@ public class EmployeeWindowController {
 
             grid.add(stringInput, 0, 0);
 
-            Node generateReportButton = penaltyDialog.getDialogPane().lookupButton(generateReport);
+            Node generateReportButton = penaltyDialog.getDialogPane().lookupButton(ok);
             generateReportButton.setDisable(true);
 
             stringInput.textProperty()
@@ -144,10 +144,10 @@ public class EmployeeWindowController {
             penaltyDialog.getDialogPane().setContent(grid);
 
             penaltyDialog.setResultConverter(dialogButton -> {
-                if (dialogButton == generateReport) {
+                if (dialogButton == ok) {
                     return stringInput.getText();
                 }
-                return "";
+                return null;
             });
 
             Optional<String> result = penaltyDialog.showAndWait();
