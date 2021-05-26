@@ -7,6 +7,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Employee;
+import model.Subscriber;
 import service.*;
 
 import java.io.IOException;
@@ -27,16 +29,17 @@ public class LoginWindowController {
     }
 
     public void tryLoginSubscriber() {
-        if (service.Login(usernameInput.getText(), passwordInput.getText(), UserType.SUBSCRIBER)) {
+        Subscriber subscriber = (Subscriber) service.Login(usernameInput.getText(), passwordInput.getText(), UserType.SUBSCRIBER);
+        if (subscriber != null) {
             try {
                 Stage stage = (Stage) usernameInput.getScene().getWindow();
 
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("views/SubscriberWindow.fxml"));
+                loader.setLocation(getClass().getResource("/views/SubscriberWindow.fxml"));
                 AnchorPane root = loader.load();
 
                 SubscriberWindowController controller = loader.getController();
-                controller.setup((SubscriberService) factory.GetService(UserType.SUBSCRIBER));
+                controller.setup((SubscriberService) factory.GetService(UserType.SUBSCRIBER), subscriber);
 
                 Scene scene = new Scene(root, 700, 600);
 
@@ -54,12 +57,13 @@ public class LoginWindowController {
     }
 
     public void tryLoginEmployee() {
-        if (service.Login(usernameInput.getText(), passwordInput.getText(), UserType.EMPLOYEE)) {
+        Employee employee = (Employee)service.Login(usernameInput.getText(), passwordInput.getText(), UserType.EMPLOYEE);
+        if (employee != null) {
             try {
                 Stage stage = (Stage) usernameInput.getScene().getWindow();
 
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("views/EmployeeWindow.fxml"));
+                loader.setLocation(getClass().getResource("/views/EmployeeWindow.fxml"));
                 AnchorPane root = loader.load();
 
                 EmployeeWindowController controller = loader.getController();

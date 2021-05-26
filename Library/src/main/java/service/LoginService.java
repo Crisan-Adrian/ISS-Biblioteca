@@ -14,24 +14,24 @@ public class LoginService {
         this.subscriberRepo = subscriberRepo;
     }
 
-    public boolean Login(String username, String password, UserType userType) {
+    public Object Login(String username, String password, UserType userType) {
         switch (userType) {
             case EMPLOYEE -> {
                 Employee e = employeeRepo.Find(new Employee(username));
                 if (e == null) {
-                    return false;
+                    return null;
                 }
-                return e.getPassword().equals(password);
+                return e.getPassword().equals(password) ? e : null;
             }
             case SUBSCRIBER -> {
                 Subscriber s = subscriberRepo.Find(new Subscriber(username));
                 if (s == null) {
                     return false;
                 }
-                return s.getPassword().equals(password);
+                return s.getPassword().equals(password) ? s : null;
             }
             default -> {
-                return false;
+                return null;
             }
         }
     }

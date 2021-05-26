@@ -138,7 +138,7 @@ public class BookDBRepo implements IBookRepo {
             try {
                 tx = session.beginTransaction();
                 List<Book> books =
-                        session.createQuery("FROM Book WHERE bookName = :name", Book.class)
+                        session.createQuery("FROM Book WHERE bookName LIKE :name", Book.class)
                                 .setParameter("name", name).list();
                 tx.commit();
                 return books;

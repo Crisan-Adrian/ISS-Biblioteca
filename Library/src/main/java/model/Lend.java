@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 
 public class Lend {
-    private long lendID;
+    private int lendID;
     private long bookID;
     private String subscriber;
     private LocalDate end;
@@ -12,7 +12,7 @@ public class Lend {
     public Lend() {
     }
 
-    public Lend(long lendID, long bookID, String subscriber, LocalDate end, boolean returned) {
+    public Lend(int lendID, long bookID, String subscriber, LocalDate end, boolean returned) {
         this.lendID = lendID;
         this.bookID = bookID;
         this.subscriber = subscriber;
@@ -20,11 +20,11 @@ public class Lend {
         this.returned = returned;
     }
 
-    public long getLendID() {
+    public int getLendID() {
         return lendID;
     }
 
-    public void setLendID(long lendID) {
+    public void setLendID(int lendID) {
         this.lendID = lendID;
     }
 

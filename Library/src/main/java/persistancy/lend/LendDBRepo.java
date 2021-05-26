@@ -98,11 +98,11 @@ public class LendDBRepo implements ILendRepo {
             Transaction tx = null;
             try {
                 tx = session.beginTransaction();
-                List<Lend> lends =
-                        session.createQuery("SELECT lendID FROM Lend WHERE isReturned = false", Lend.class)
+                List<Long> lends =
+                        session.createQuery("SELECT bookID FROM Lend WHERE returned = false", Long.class)
                                 .list();
                 tx.commit();
-                return lends.stream().map(Lend::getLendID).collect(Collectors.toList());
+                return lends;
             } catch (RuntimeException ex) {
                 if (tx != null) {
                     tx.rollback();
@@ -119,7 +119,7 @@ public class LendDBRepo implements ILendRepo {
             try {
                 tx = session.beginTransaction();
                 Lend lend =
-                        session.createQuery("FROM Lend WHERE bookID = :book AND isReturned = false", Lend.class)
+                        session.createQuery("FROM Lend WHERE bookID = :book AND returned = false", Lend.class)
                                 .setParameter("book", bookID)
                                 .setMaxResults(1)
                                 .uniqueResult();
